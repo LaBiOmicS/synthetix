@@ -10,67 +10,131 @@ export interface Lesson {
 }
 
 export const lessons: Lesson[] = [
-  // Módulo 1: Fundamentos
+  // --- FASE 1: FUNDAMENTOS DO PYTHON (ZERO AO AVANÇADO) ---
+
+  // Módulo 1: Introdução e Tipos Primitivos
   {
-    id: 'f-1',
-    module: 'Fundamentos',
-    title: 'O Início de Tudo',
-    theory: 'Python é uma linguagem de alto nível, interpretada e de tipagem dinâmica. Comece aprendendo a exibir informações usando a função `print()`. Imprima a mensagem "Mundo, aqui vou eu!".',
-    initialCode: '# Use a função print\n',
-    testCode: 'import sys\nassert "Mundo, aqui vou eu!" in sys.stdout.getvalue()',
+    id: 'core-1',
+    module: '1. Primeiros Passos',
+    title: 'A Função Print',
+    theory: 'Toda jornada em Python começa com a saída de dados. A função print() exibe informações no console. Tente exibir "Synthetix Ativado".',
+    initialCode: 'print("")',
+    testCode: 'import sys\nassert "Synthetix Ativado" in sys.stdout.getvalue()',
     xp: 10,
     dependencies: []
   },
   {
-    id: 'f-2',
-    module: 'Fundamentos',
-    title: 'Memória e Variáveis',
-    theory: 'Variáveis são nomes que apontam para valores na memória. Em Python, não precisamos declarar o tipo. Crie uma variável chamada `idade` e atribua o valor 25.',
-    initialCode: '# Crie a variável aqui\n',
-    testCode: 'assert idade == 25',
+    id: 'core-2',
+    module: '1. Primeiros Passos',
+    title: 'Variáveis e Números',
+    theory: 'Variáveis armazenam dados. Em Python, usamos o sinal de = para atribuição. Crie duas variáveis, a = 10 e b = 20, e uma terceira c que seja a soma das duas.',
+    initialCode: 'a = 10\n# Defina b e c\n',
+    testCode: 'assert b == 20 and c == 30',
     xp: 15,
     dependencies: []
   },
-  // Módulo 2: Controle de Fluxo
   {
-    id: 'c-1',
-    module: 'Controle de Fluxo',
-    title: 'Tomada de Decisão (if/else)',
-    theory: 'O comando `if` permite que o código tome decisões. Verifique se o valor de `x` é maior que 10 e imprima "Maior".',
-    initialCode: 'x = 15\n# Escreva o bloco if aqui\n',
-    testCode: 'import sys\nassert "Maior" in sys.stdout.getvalue()',
+    id: 'core-3',
+    module: '2. Estruturas de Dados',
+    title: 'Listas: O Poder das Coleções',
+    theory: 'Listas são coleções ordenadas e mutáveis. Elas podem conter qualquer tipo de dado. Adicione o número 42 à lista dada usando o método .append().',
+    initialCode: 'minha_lista = [1, 2, 3]\n# Adicione o 42 aqui\n',
+    testCode: 'assert minha_lista == [1, 2, 3, 42]',
+    xp: 20,
+    dependencies: []
+  },
+  {
+    id: 'core-4',
+    module: '2. Estruturas de Dados',
+    title: 'Dicionários (Chave-Valor)',
+    theory: 'Dicionários mapeiam chaves a valores. São extremamente rápidos para busca. Crie um dicionário chamado "precos" onde "maça" custa 5 e "banana" custa 3.',
+    initialCode: 'precos = {}',
+    testCode: 'assert precos["maça"] == 5 and precos["banana"] == 3',
     xp: 25,
     dependencies: []
   },
+
+  // Módulo 3: Controle de Fluxo
   {
-    id: 'c-2',
-    module: 'Controle de Fluxo',
-    title: 'A Força do Loop (for)',
-    theory: 'Loops servem para repetir tarefas. Use um loop `for` e a função `range(5)` para imprimir os números de 0 a 4.',
-    initialCode: '# Escreva o loop aqui\n',
-    testCode: 'import sys\noutput = sys.stdout.getvalue()\nassert all(str(i) in output for i in range(5))',
+    id: 'core-5',
+    module: '3. Controle de Fluxo',
+    title: 'Condicionais if/else',
+    theory: 'Decisões no código! Verifique se a idade é maior ou igual a 18. Se for, imprima "Adulto", caso contrário, "Menor".',
+    initialCode: 'idade = 20\n# Escreva seu if aqui',
+    testCode: 'import sys\noutput = sys.stdout.getvalue()\nassert "Adulto" in output',
     xp: 30,
     dependencies: []
   },
-  // Módulo 3: Avançado
   {
-    id: 'a-1',
-    module: 'Python Avançado',
-    title: 'List Comprehensions',
-    theory: 'Uma forma elegante de criar listas. Crie uma lista chamada `quadrados` que contenha o quadrado de cada número de 0 a 9.',
-    initialCode: '# Use list comprehension\n',
-    testCode: 'assert quadrados == [x**2 for x in range(10)]',
-    xp: 50,
+    id: 'core-6',
+    module: '3. Controle de Fluxo',
+    title: 'Loops de Repetição',
+    theory: 'Use o loop for e a função range() para somar todos os números de 0 a 9 em uma variável chamada "total".',
+    initialCode: 'total = 0\n# Escreva o loop aqui',
+    testCode: 'assert total == sum(range(10))',
+    xp: 35,
     dependencies: []
   },
+
+  // Módulo 4: Funções e Modularização
   {
-    id: 'a-2',
-    module: 'Python Avançado',
-    title: 'Decoradores',
-    theory: 'Decoradores são funções que modificam o comportamento de outras funções. Eles são fundamentais em frameworks modernos.',
-    initialCode: 'def meu_decorador(func):\n    def envelope():\n        print("Algo antes")\n        func()\n        print("Algo depois")\n    return envelope\n\n@meu_decorador\ndef diga_oi():\n    print("Oi!")\n\ndiga_oi()',
-    testCode: 'import sys\noutput = sys.stdout.getvalue()\nassert "Algo antes" in output and "Oi!" in output',
-    xp: 100,
+    id: 'core-7',
+    module: '4. Funções e Escopo',
+    title: 'Definindo Funções',
+    theory: 'Funções evitam repetição de código. Crie uma função chamada "saudacao" que recebe um nome e retorna "Olá, {nome}!".',
+    initialCode: 'def saudacao(nome):\n    return f""',
+    testCode: 'assert saudacao("Ana") == "Olá, Ana!"',
+    xp: 40,
     dependencies: []
+  },
+
+  // Módulo 5: Programação Orientada a Objetos
+  {
+    id: 'core-8',
+    module: '5. Orientação a Objetos',
+    title: 'Classes e Atributos',
+    theory: 'POO permite modelar o mundo real. Crie uma classe "Robo" com um atributo "nome" definido no método __init__.',
+    initialCode: 'class Robo:\n    def __init__(self, nome):\n        pass',
+    testCode: 'r = Robo("R2D2")\nassert r.nome == "R2D2"',
+    xp: 60,
+    dependencies: []
+  },
+
+  // Módulo 6: Python Avançado
+  {
+    id: 'core-9',
+    module: '6. Python Pro',
+    title: 'List Comprehensions',
+    theory: 'Crie uma lista "pares" que contenha os números pares de 0 a 20 usando apenas uma linha de código.',
+    initialCode: 'pares = []',
+    testCode: 'assert pares == [x for x in range(21) if x % 2 == 0]',
+    xp: 70,
+    dependencies: []
+  },
+
+  // --- FASE 2: BIBLIOTECAS E ECOSSISTEMA ---
+
+  // Módulo: NumPy (Processamento Numérico)
+  {
+    id: 'lib-1',
+    module: '7. Biblioteca NumPy',
+    title: 'Arrays Matemáticos',
+    theory: 'NumPy é a base da Ciência de Dados. Converta a lista Python em um array NumPy e calcule a soma.',
+    initialCode: 'import numpy as np\nlista = [10, 20, 30]\narr = np.array(lista)\nsoma = 0 # Calcule a soma do array',
+    testCode: 'import numpy as np\nassert isinstance(arr, np.ndarray) and soma == 60',
+    xp: 50,
+    dependencies: ['numpy']
+  },
+
+  // Módulo: Pandas (Análise de Dados)
+  {
+    id: 'lib-2',
+    module: '8. Biblioteca Pandas',
+    title: 'DataFrames',
+    theory: 'Pandas é o Excel do Python. Crie um DataFrame a partir do dicionário "dados" e mostre a média da coluna "valor".',
+    initialCode: 'import pandas as pd\ndados = {"A": [1, 2, 3], "B": [4, 5, 6]}\ndf = pd.DataFrame(dados)\nmedia = 0 # Calcule a média da coluna A',
+    testCode: 'import pandas as pd\nassert media == 2.0',
+    xp: 60,
+    dependencies: ['pandas']
   }
 ];
