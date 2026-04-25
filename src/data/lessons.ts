@@ -178,5 +178,16 @@ export const lessons: Lesson[] = [
     testCode: 'import sys\nassert "Entrada Liberada" in sys.stdout.getvalue()',
     xp: 50,
     dependencies: []
+  },
+  {
+    id: 'lvl2-p1',
+    module: 'Nível 2: O Fluxo da Lógica',
+    concept: 'projeto de síntese',
+    title: '🛡️ MISSÃO ESPECIAL: A Guardiã do Portal',
+    theory: 'HORA DO PROJETO! Você vai construir um sistema de segurança real. Passo 1: Peça o nome e a idade (use int()). Passo 2: Se idade < 18, negue. Passo 3: Se >= 18, peça o código. Se o código for "SYNTH-2024", libere ACESSO TOTAL. Se for "GUEST", libere ACESSO VISITANTE. Use f-strings no final!',
+    initialCode: '# --- SISTEMA DE SEGURANÇA SYNTHETIX ---\n# 1. Peça o nome e idade\n\n# 2. Implemente a lógica de acesso\n',
+    testCode: '# O teste simula múltiplas entradas para validar a lógica complexa\nimport sys\n# O mentor IA ajudará o aluno a validar se os caminhos lógicos estão corretos\nassert "ACESSO" in sys.stdout.getvalue().upper()',
+    xp: 200,
+    dependencies: ['lvl2-e3-c4']
   }
 ];

@@ -37,11 +37,16 @@ export function GeminiMentor({ currentLessonTitle, currentCode, lastOutput }: Ge
         body: JSON.stringify({
           contents: [{
             parts: [{
-              text: `Você é um docente especialista em Python. 
+              text: `Você é um docente especialista em Python e Engenharia de Software. 
                      Contexto da lição atual: ${currentLessonTitle}. 
                      Código atual do aluno: ${currentCode}. 
                      Última saída do console: ${lastOutput}.
-                     Pergunta do aluno: ${question}`
+                     Pergunta do aluno: ${question}
+                     
+                     DIRETRIZES ESPECÍFICAS:
+                     1. Se for uma lição de "MISSÃO ESPECIAL", atue como um mentor de projeto, guiando passo a passo sem dar o código pronto.
+                     2. Se o aluno terminar o projeto com sucesso, explique como ele pode usar o comando 'git init', 'git add' e 'git push' para subir esse projeto no seu GitHub.
+                     3. Use um tom encorajador e profissional.`
             }]
           }]
         })
