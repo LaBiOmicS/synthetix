@@ -1,6 +1,5 @@
-import React from 'react';
 import { BookOpen, CheckCircle2 } from 'lucide-react';
-import { Lesson } from '../data/lessons';
+import type { Lesson } from '../data/lessons';
 
 interface LessonContentProps {
   currentLesson: Lesson;

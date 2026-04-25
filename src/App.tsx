@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { usePyodide } from './hooks/usePyodide';
 import { lessons } from './data/lessons';
 import { LoadingScreen } from './components/LoadingScreen';

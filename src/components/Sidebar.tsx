@@ -1,6 +1,5 @@
-import React from 'react';
-import { Lesson } from '../data/lessons';
 import { Code2, CheckCircle2, ChevronRight } from 'lucide-react';
+import type { Lesson } from '../data/lessons';
 import { cn } from '../utils/cn';
 
 interface SidebarProps {
