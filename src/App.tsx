@@ -21,6 +21,15 @@ export default function App() {
   const currentLesson = allLessons[currentLessonIndex] || allLessons[0];
 
   const [code, setCode] = useState('');
+  const [output, setOutput] = useState('');
+  const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
+  const [xp, setXp] = useState(() => Number(localStorage.getItem('xp') || 0));
+  const [completedLessons, setCompletedLessons] = useState<string[]>(() => 
+    JSON.parse(localStorage.getItem('completedLessons') || '[]')
+  );
+  const [isRunning, setIsRunning] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   useEffect(() => {
     if (currentLesson) {
