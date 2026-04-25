@@ -109,17 +109,19 @@ export default function App() {
         body: JSON.stringify({
           contents: [{
             parts: [{
-              text: `Gere um novo desafio de programação Python inédito para o módulo "${currentLesson.module}". 
-                     O desafio deve ser diferente do atual ("${currentLesson.title}").
+              text: `Gere uma VARIAÇÃO de um desafio de programação Python para o conceito "${currentLesson.concept}". 
+                     O objetivo é reforçar o aprendizado através de uma microconquista diferente mas com a mesma complexidade.
+                     Módulo: "${currentLesson.module}".
                      Retorne APENAS um JSON no seguinte formato:
                      {
                        "id": "dyn-${Date.now()}",
                        "module": "${currentLesson.module}",
-                       "title": "Título do Desafio",
-                       "theory": "Explicação curta",
-                       "initialCode": "Código inicial",
-                       "testCode": "Código de teste usando assert",
-                       "xp": 50
+                       "concept": "${currentLesson.concept}",
+                       "title": "Título Curto (Variação)",
+                       "theory": "Instrução curtíssima de 1 frase",
+                       "initialCode": "Código inicial para o aluno completar",
+                       "testCode": "Código de teste em Python (usando assert) para validar a solução",
+                       "xp": 10
                      }`
             }]
           }],
