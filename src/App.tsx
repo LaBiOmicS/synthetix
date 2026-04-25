@@ -18,22 +18,12 @@ export default function App() {
   
   // Mesclar lições estáticas com customizadas
   const allLessons = useMemo(() => [...lessons, ...customLessons], [customLessons]);
-  const currentLesson = allLessons[currentLessonIndex];
+  const currentLesson = allLessons[currentLessonIndex] || allLessons[0];
 
-  const [code, setCode] = useState(currentLesson?.initialCode || '');
-  const [output, setOutput] = useState('');
-  const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
-  const [xp, setXp] = useState(() => Number(localStorage.getItem('xp') || 0));
-  const [completedLessons, setCompletedLessons] = useState<string[]>(() => 
-    JSON.parse(localStorage.getItem('completedLessons') || '[]')
-  );
-  const [isRunning, setIsRunning] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [code, setCode] = useState('');
 
   useEffect(() => {
     if (currentLesson) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCode(currentLesson.initialCode);
       setOutput('');
       setIsSuccess(null);

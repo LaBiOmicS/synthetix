@@ -25,7 +25,9 @@ export function Sidebar({
   onSelectLesson,
   onResetProgress,
 }: SidebarProps) {
-  // Agrupar lições por módulo
+  // Manter a ordem dos módulos conforme aparecem nas lições
+  const moduleOrder = Array.from(new Set(lessons.map(l => l.module)));
+
   const modules = lessons.reduce((acc, lesson, index) => {
     if (!acc[lesson.module]) acc[lesson.module] = [];
     acc[lesson.module].push({ ...lesson, originalIndex: index });
@@ -34,10 +36,10 @@ export function Sidebar({
 
   return (
     <aside className={cn(
-      "bg-slate-900 border-r border-slate-800 transition-all duration-300 flex flex-col",
+      "bg-slate-900 border-r border-slate-800 transition-all duration-300 flex flex-col h-full shrink-0",
       isOpen ? "w-80" : "w-0 overflow-hidden border-none"
     )}>
-      <div className="p-6 border-b border-slate-800">
+      <div className="p-6 border-b border-slate-800 min-w-[320px]">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/20">
             <Code2 className="text-white" size={24} />
@@ -62,13 +64,13 @@ export function Sidebar({
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto p-4 space-y-6">
-        {Object.entries(modules).map(([moduleName, moduleLessons]) => (
+      <nav className="flex-1 overflow-y-auto p-4 space-y-6 min-w-[320px]">
+        {moduleOrder.map((moduleName) => (
           <div key={moduleName} className="space-y-2">
             <h3 className="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">
               {moduleName}
             </h3>
-            {moduleLessons.map((lesson) => (
+            {modules[moduleName]?.map((lesson) => (
               <button
                 key={lesson.id}
                 onClick={() => onSelectLesson(lesson.originalIndex)}
@@ -96,7 +98,7 @@ export function Sidebar({
         ))}
       </nav>
 
-      <div className="p-4 border-t border-slate-800/50">
+      <div className="p-4 border-t border-slate-800/50 min-w-[320px]">
         <button 
           onClick={onResetProgress}
           className="w-full py-2 rounded-lg text-[10px] text-slate-600 hover:text-red-400 hover:bg-red-400/5 uppercase tracking-widest font-bold transition-all"
