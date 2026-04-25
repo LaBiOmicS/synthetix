@@ -119,6 +119,8 @@ export default function App() {
             currentLesson={currentLesson}
             isSuccess={isSuccess}
             onNextLesson={handleNextLesson}
+            currentCode={code}
+            lastOutput={output}
           />
 
           <div className="flex-1 flex flex-col bg-slate-950">

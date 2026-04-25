@@ -1,13 +1,22 @@
 import { BookOpen, CheckCircle2 } from 'lucide-react';
 import type { Lesson } from '../data/lessons';
+import { GeminiMentor } from './GeminiMentor';
 
 interface LessonContentProps {
   currentLesson: Lesson;
   isSuccess: boolean | null;
   onNextLesson: () => void;
+  currentCode: string;
+  lastOutput: string;
 }
 
-export function LessonContent({ currentLesson, isSuccess, onNextLesson }: LessonContentProps) {
+export function LessonContent({ 
+  currentLesson, 
+  isSuccess, 
+  onNextLesson,
+  currentCode,
+  lastOutput
+}: LessonContentProps) {
   return (
     <div className="w-1/3 border-r border-slate-800 flex flex-col bg-slate-900/20">
       <div className="p-8 overflow-y-auto">
@@ -37,6 +46,12 @@ export function LessonContent({ currentLesson, isSuccess, onNextLesson }: Lesson
             </div>
           </div>
         )}
+
+        <GeminiMentor 
+          currentLessonTitle={currentLesson.title}
+          currentCode={currentCode}
+          lastOutput={lastOutput}
+        />
       </div>
     </div>
   );
