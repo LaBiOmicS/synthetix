@@ -8,10 +8,19 @@ import { LessonContent } from './components/LessonContent';
 import { Editor } from './components/Editor';
 import { Console } from './components/Console';
 
+import { useAI } from './context/AIContext';
+
 export default function App() {
   const { pyodide, loading, runCode } = usePyodide();
+  const { apiKey } = useAI();
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
-  const [code, setCode] = useState(lessons[0].initialCode);
+  const [customLessons, setCustomLessons] = useState<any[]>([]);
+  
+  // Mesclar lições estáticas com customizadas
+  const allLessons = useMemo(() => [...lessons, ...customLessons], [customLessons]);
+  const currentLesson = allLessons[currentLessonIndex];
+
+  const [code, setCode] = useState(currentLesson?.initialCode || '');
   const [output, setOutput] = useState('');
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
   const [xp, setXp] = useState(() => Number(localStorage.getItem('xp') || 0));
@@ -20,14 +29,15 @@ export default function App() {
   );
   const [isRunning, setIsRunning] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-  const currentLesson = lessons[currentLessonIndex];
+  const [isGenerating, setIsGenerating] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCode(currentLesson.initialCode);
-    setOutput('');
-    setIsSuccess(null);
+    if (currentLesson) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setCode(currentLesson.initialCode);
+      setOutput('');
+      setIsSuccess(null);
+    }
   }, [currentLesson]);
 
   const level = useMemo(() => Math.floor(xp / 100) + 1, [xp]);
@@ -87,7 +97,45 @@ export default function App() {
   };
 
   const handleNextLesson = () => {
-    setCurrentLessonIndex(prev => Math.min(prev + 1, lessons.length - 1));
+    setCurrentLessonIndex(prev => Math.min(prev + 1, allLessons.length - 1));
+  };
+
+  const generatePracticeChallenge = async (apiKey: string) => {
+    setIsGenerating(true);
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: `Gere um novo desafio de programação Python inédito para o módulo "${currentLesson.module}". 
+                     O desafio deve ser diferente do atual ("${currentLesson.title}").
+                     Retorne APENAS um JSON no seguinte formato:
+                     {
+                       "id": "dyn-${Date.now()}",
+                       "module": "${currentLesson.module}",
+                       "title": "Título do Desafio",
+                       "theory": "Explicação curta",
+                       "initialCode": "Código inicial",
+                       "testCode": "Código de teste usando assert",
+                       "xp": 50
+                     }`
+            }]
+          }],
+          generationConfig: { response_mime_type: "application/json" }
+        })
+      });
+
+      const data = await response.json();
+      const newLesson = JSON.parse(data.candidates[0].content.parts[0].text);
+      setCustomLessons(prev => [...prev, newLesson]);
+      setCurrentLessonIndex(allLessons.length); // Ir para a nova lição
+    } catch (err) {
+      alert('Erro ao gerar desafio. Verifique sua chave API.');
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   if (loading) {
@@ -97,7 +145,7 @@ export default function App() {
   return (
     <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden font-sans">
       <Sidebar 
-        lessons={lessons}
+        lessons={allLessons}
         currentLessonIndex={currentLessonIndex}
         completedLessons={completedLessons}
         xp={xp}
@@ -121,6 +169,8 @@ export default function App() {
             onNextLesson={handleNextLesson}
             currentCode={code}
             lastOutput={output}
+            onGeneratePractice={() => apiKey && generatePracticeChallenge(apiKey)}
+            isGenerating={isGenerating}
           />
 
           <div className="flex-1 flex flex-col bg-slate-950">

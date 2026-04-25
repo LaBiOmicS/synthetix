@@ -25,6 +25,13 @@ export function Sidebar({
   onSelectLesson,
   onResetProgress,
 }: SidebarProps) {
+  // Agrupar lições por módulo
+  const modules = lessons.reduce((acc, lesson, index) => {
+    if (!acc[lesson.module]) acc[lesson.module] = [];
+    acc[lesson.module].push({ ...lesson, originalIndex: index });
+    return acc;
+  }, {} as Record<string, any[]>);
+
   return (
     <aside className={cn(
       "bg-slate-900 border-r border-slate-800 transition-all duration-300 flex flex-col",
@@ -52,46 +59,51 @@ export function Sidebar({
               style={{ width: `${progressInLevel}%` }}
             />
           </div>
-          <button 
-            onClick={onResetProgress}
-            className="mt-4 text-[10px] text-slate-600 hover:text-red-400 uppercase tracking-widest font-bold transition-colors"
-          >
-            Resetar Progresso
-          </button>
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto p-4 space-y-2">
-        {lessons.map((lesson, index) => (
-          <button
-            key={lesson.id}
-            onClick={() => onSelectLesson(index)}
-            className={cn(
-              "w-full text-left p-3 rounded-xl transition-all flex items-center gap-3 group",
-              currentLessonIndex === index 
-                ? "bg-blue-600/20 text-blue-100 border border-blue-500/30" 
-                : "hover:bg-slate-800 text-slate-400"
-            )}
-          >
-            <div className={cn(
-              "w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0",
-              completedLessons.includes(lesson.id) 
-                ? "bg-green-500/20 text-green-400" 
-                : currentLessonIndex === index ? "bg-blue-600 text-white" : "bg-slate-800 text-slate-500"
-            )}>
-              {completedLessons.includes(lesson.id) ? <CheckCircle2 size={16} /> : index + 1}
-            </div>
-            <div className="min-w-0">
-              <p className="text-xs font-medium text-slate-500 uppercase tracking-tight">{lesson.module}</p>
-              <p className="font-semibold truncate text-sm">{lesson.title}</p>
-            </div>
-            <ChevronRight size={14} className={cn(
-              "ml-auto transition-transform",
-              currentLessonIndex === index ? "rotate-90 text-blue-400" : "opacity-0 group-hover:opacity-100"
-            )} />
-          </button>
+      <nav className="flex-1 overflow-y-auto p-4 space-y-6">
+        {Object.entries(modules).map(([moduleName, moduleLessons]) => (
+          <div key={moduleName} className="space-y-2">
+            <h3 className="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">
+              {moduleName}
+            </h3>
+            {moduleLessons.map((lesson) => (
+              <button
+                key={lesson.id}
+                onClick={() => onSelectLesson(lesson.originalIndex)}
+                className={cn(
+                  "w-full text-left p-2.5 rounded-xl transition-all flex items-center gap-3 group",
+                  currentLessonIndex === lesson.originalIndex 
+                    ? "bg-blue-600/20 text-blue-100 border border-blue-500/30" 
+                    : "hover:bg-slate-800/50 text-slate-400"
+                )}
+              >
+                <div className={cn(
+                  "w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0",
+                  completedLessons.includes(lesson.id) 
+                    ? "bg-green-500/20 text-green-400" 
+                    : currentLessonIndex === lesson.originalIndex ? "bg-blue-600 text-white" : "bg-slate-800 text-slate-500"
+                )}>
+                  {completedLessons.includes(lesson.id) ? <CheckCircle2 size={14} /> : lesson.originalIndex + 1}
+                </div>
+                <div className="min-w-0">
+                  <p className="font-semibold truncate text-xs">{lesson.title}</p>
+                </div>
+              </button>
+            ))}
+          </div>
         ))}
       </nav>
+
+      <div className="p-4 border-t border-slate-800/50">
+        <button 
+          onClick={onResetProgress}
+          className="w-full py-2 rounded-lg text-[10px] text-slate-600 hover:text-red-400 hover:bg-red-400/5 uppercase tracking-widest font-bold transition-all"
+        >
+          Resetar Progresso
+        </button>
+      </div>
     </aside>
   );
 }
