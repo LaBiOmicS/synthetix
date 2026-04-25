@@ -10,93 +10,111 @@ export interface Lesson {
 }
 
 export const lessons: Lesson[] = [
-  // --- MÓDULO 1: FUNDAMENTOS E ARQUITETURA ---
+  // --- NÍVEL 1: FUNDAMENTOS E INTERAÇÃO (O DESPERTAR) ---
+  
+  // Etapa: Olá, Mundo!
   {
-    id: 'f-1',
-    module: '01. Arquitetura Python',
-    title: 'Dinâmica e Objetos',
-    theory: 'Em Python, TUDO é um objeto. Quando você cria `x = 10`, você está criando um objeto do tipo `int` e uma referência chamada `x`. Use a função `id()` para descobrir o endereço de memória de uma variável e `type()` para seu tipo. Desafio: crie uma variável `a` com valor 5 e uma variável `b` que aponte para o mesmo ID de `a`.',
-    initialCode: 'a = 5\nb = # Faça b apontar para a',
-    testCode: 'assert a == 5 and b == 5 and id(a) == id(b)',
-    xp: 20,
+    id: 'lvl1-e1-c1',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 1: A Voz do Código',
+    theory: 'Tudo começa com a função `print()`. Ela é a voz do seu computador. Use-a para exibir seu primeiro nome entre aspas.',
+    initialCode: '# Exiba seu nome abaixo\n',
+    testCode: 'import sys\noutput = sys.stdout.getvalue().strip()\nassert len(output) > 0',
+    xp: 5,
     dependencies: []
   },
   {
-    id: 'f-2',
-    module: '01. Arquitetura Python',
-    title: 'Imutabilidade de Inteiros',
-    theory: 'Python pré-aloca inteiros pequenos (interning) entre -5 e 256 para performance. Se você criar duas variáveis com valor 100, elas terão o mesmo ID. Mas e se for 300? Verifique se `x` e `y` com valor 300 são o mesmo objeto usando o operador `is`.',
-    initialCode: 'x = 300\ny = 300\niguais = # use o operador is',
-    testCode: 'assert iguais == (x is y)',
-    xp: 30,
-    dependencies: []
-  },
-
-  // --- MÓDULO 2: STRINGS E MANIPULAÇÃO DE DADOS ---
-  {
-    id: 's-1',
-    module: '02. Strings Avançadas',
-    title: 'F-Strings e Formatação',
-    theory: 'F-Strings não são apenas para imprimir variáveis. Elas permitem executar expressões e formatar números. Formate o número `pi = 3.14159` para ter apenas 2 casas decimais dentro de uma f-string na variável `resultado`.',
-    initialCode: 'pi = 3.14159\nresultado = f""',
-    testCode: 'assert resultado == "3.14"',
-    xp: 25,
+    id: 'lvl1-e1-c2',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 2: Citando Textos',
+    theory: 'Em Python, textos são chamados de "Strings". Eles precisam de aspas. Exiba a frase "Python é vida!".',
+    initialCode: 'print("")',
+    testCode: 'import sys\nassert "Python é vida!" in sys.stdout.getvalue()',
+    xp: 5,
     dependencies: []
   },
   {
-    id: 's-2',
-    module: '02. Strings Avançadas',
-    title: 'Slicing Profissional',
-    theory: 'O slicing `[start:stop:step]` é uma das ferramentas mais poderosas do Python. Dada a string "PythonRockstar", extraia apenas a palavra "nohtyP" (Python invertido) usando apenas slicing.',
-    initialCode: 's = "PythonRockstar"\ninvertido = # use slicing',
-    testCode: 'assert invertido == "nohtyP"',
-    xp: 40,
+    id: 'lvl1-e1-c3',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 3: Números Puros',
+    theory: 'Números não precisam de aspas. Tente imprimir o número 2024 diretamente.',
+    initialCode: 'print()',
+    testCode: 'import sys\nassert "2024" in sys.stdout.getvalue()',
+    xp: 5,
     dependencies: []
   },
 
-  // --- MÓDULO 3: LÓGICA E ESTRUTURAS ---
+  // Etapa: Variáveis e Memória
   {
-    id: 'l-1',
-    module: '03. Estruturas de Dados',
-    title: 'List Methods vs Slicing',
-    theory: 'Adicionar elementos no final de uma lista (`.append()`) é O(1), mas inserir no início (`.insert(0, x)`) é O(n). Remova o último elemento da lista `dados` e adicione-o no início sem usar métodos, apenas concatenação e slicing.',
-    initialCode: 'dados = [1, 2, 3, 4, 5]\n# Reorganize dados',
-    testCode: 'assert dados == [5, 1, 2, 3, 4]',
+    id: 'lvl1-e2-c1',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 4: Criando Gavetas',
+    theory: 'Variáveis são como gavetas com etiquetas. Crie uma variável chamada `nome` e coloque seu nome nela.',
+    initialCode: 'nome = ""',
+    testCode: 'assert len(nome) > 0',
+    xp: 10,
+    dependencies: []
+  },
+  {
+    id: 'lvl1-e2-c2',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 5: Guardando Números',
+    theory: 'Agora crie uma variável chamada `xp` e dê o valor 100 a ela.',
+    initialCode: 'xp = ',
+    testCode: 'assert xp == 100',
+    xp: 10,
+    dependencies: []
+  },
+  {
+    id: 'lvl1-e2-c3',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 6: Somando Forças',
+    theory: 'Você pode somar variáveis! Crie `a = 5`, `b = 5` e depois `c = a + b`.',
+    initialCode: 'a = 5\n# crie b e c abaixo\n',
+    testCode: 'assert c == 10',
+    xp: 10,
+    dependencies: []
+  },
+
+  // Etapa: Interação
+  {
+    id: 'lvl1-e3-c1',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 7: O Scanner de Dados',
+    theory: 'A função `input()` permite que o usuário fale com o código. Salve o que o usuário digitar em uma variável `resposta`.',
+    initialCode: '# resposta = input("Qual seu desejo? ")',
+    testCode: 'assert "resposta" in locals()',
+    xp: 15,
+    dependencies: []
+  },
+  {
+    id: 'lvl1-e3-c2',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 8: F-Strings Mágicas',
+    theory: 'Use f-strings para misturar texto e variáveis: `f"Oi {nome}"`. Exiba "Nível 1" usando uma variável `n = 1`.',
+    initialCode: 'n = 1\nprint(f"")',
+    testCode: 'import sys\nassert "Nível 1" in sys.stdout.getvalue()',
+    xp: 15,
+    dependencies: []
+  },
+  {
+    id: 'lvl1-e3-c3',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 9: Multiplicador de Texto',
+    theory: 'Sabia que pode multiplicar strings? Exiba "Ha" multiplicado por 3.',
+    initialCode: 'print("Ha" * 3)',
+    testCode: 'import sys\nassert "HaHaHa" in sys.stdout.getvalue()',
+    xp: 10,
+    dependencies: []
+  },
+  {
+    id: 'lvl1-e3-c4',
+    module: 'Nível 1: O Despertar',
+    title: 'Etapa 10: O Final do Despertar',
+    theory: 'Parabéns! Você completou o primeiro nível. Imprima "Mestre do Nível 1" para selar sua conquista.',
+    initialCode: '',
+    testCode: 'import sys\nassert "Mestre do Nível 1" in sys.stdout.getvalue()',
     xp: 50,
-    dependencies: []
-  },
-  {
-    id: 'l-2',
-    module: '03. Estruturas de Dados',
-    title: 'Deep Copy vs Shallow Copy',
-    theory: 'Ao copiar listas aninhadas, `list.copy()` cria apenas uma cópia rasa. Se você mudar um sub-item na cópia, ele muda na original. Use o módulo `copy` para criar uma `deepcopy` de `lista_a` em `lista_b`.',
-    initialCode: 'import copy\nlista_a = [[1, 2], [3, 4]]\nlista_b = # deepcopy aqui',
-    testCode: 'import copy\nlista_b[0][0] = 99\nassert lista_a[0][0] == 1',
-    xp: 60,
-    dependencies: []
-  },
-
-  // --- MÓDULO 4: FUNÇÕES E FUNCIONAL ---
-  {
-    id: 'fn-1',
-    module: '04. Funções Ninja',
-    title: 'Args e Kwargs',
-    theory: 'Funções flexíveis usam `*args` (tupla de argumentos posicionais) e `**kwargs` (dicionário de argumentos nomeados). Crie uma função `multi_soma` que some todos os números passados como argumentos posicionais.',
-    initialCode: 'def multi_soma(*args):\n    pass',
-    testCode: 'assert multi_soma(1, 2, 3, 4) == 10 and multi_soma(10, 20) == 30',
-    xp: 50,
-    dependencies: []
-  },
-
-  // --- MÓDULO 5: POO E ENGENHARIA ---
-  {
-    id: 'poo-1',
-    module: '05. POO Avançada',
-    title: 'Métodos Dunder (Mágicos)',
-    theory: 'Métodos como `__str__`, `__repr__` e `__add__` permitem que suas classes se comportem como tipos nativos. Implemente o método `__len__` na classe `Playlist` para que `len(playlist)` retorne o número de músicas.',
-    initialCode: 'class Playlist:\n    def __init__(self, musicas):\n        self.musicas = musicas\n    # Implemente __len__',
-    testCode: 'p = Playlist(["Song 1", "Song 2"])\nassert len(p) == 2',
-    xp: 80,
     dependencies: []
   }
 ];
