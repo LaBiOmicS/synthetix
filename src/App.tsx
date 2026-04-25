@@ -157,35 +157,41 @@ export default function App() {
         onResetProgress={handleResetProgress}
       />
 
-      <main className="flex-1 flex flex-col min-w-0 relative">
+      <main className="flex-1 flex flex-col min-w-0 relative h-full">
         <Header 
           xp={xp}
           onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
         />
 
-        <div className="flex-1 flex overflow-hidden">
-          <LessonContent 
-            currentLesson={currentLesson}
-            isSuccess={isSuccess}
-            onNextLesson={handleNextLesson}
-            currentCode={code}
-            lastOutput={output}
-            onGeneratePractice={() => apiKey && generatePracticeChallenge(apiKey)}
-            isGenerating={isGenerating}
-          />
-
-          <div className="flex-1 flex flex-col bg-slate-950">
-            <Editor 
-              code={code}
-              isRunning={isRunning}
-              onChange={setCode}
-              onRun={handleRun}
-            />
-            <Console 
-              output={output}
+        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+          <div className="w-full lg:w-[400px] xl:w-[450px] flex-shrink-0 border-b lg:border-b-0 lg:border-r border-slate-800 bg-slate-900/20 overflow-y-auto h-[40vh] lg:h-full">
+            <LessonContent 
+              currentLesson={currentLesson}
               isSuccess={isSuccess}
-              onClear={() => setOutput('')}
+              onNextLesson={handleNextLesson}
+              currentCode={code}
+              lastOutput={output}
+              onGeneratePractice={() => apiKey && generatePracticeChallenge(apiKey)}
+              isGenerating={isGenerating}
             />
+          </div>
+
+          <div className="flex-1 flex flex-col bg-slate-950 min-h-0 overflow-hidden">
+            <div className="flex-1 min-h-[300px]">
+              <Editor 
+                code={code}
+                isRunning={isRunning}
+                onChange={setCode}
+                onRun={handleRun}
+              />
+            </div>
+            <div className="h-[25vh] lg:h-1/3 min-h-[150px]">
+              <Console 
+                output={output}
+                isSuccess={isSuccess}
+                onClear={() => setOutput('')}
+              />
+            </div>
           </div>
         </div>
       </main>
