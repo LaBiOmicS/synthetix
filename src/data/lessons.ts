@@ -10,131 +10,93 @@ export interface Lesson {
 }
 
 export const lessons: Lesson[] = [
-  // --- FASE 1: FUNDAMENTOS DO PYTHON (ZERO AO AVANÇADO) ---
-
-  // Módulo 1: Introdução e Tipos Primitivos
+  // --- MÓDULO 1: FUNDAMENTOS E ARQUITETURA ---
   {
-    id: 'core-1',
-    module: '1. Primeiros Passos',
-    title: 'A Função Print',
-    theory: 'Toda jornada em Python começa com a saída de dados. A função print() exibe informações no console. Tente exibir "Synthetix Ativado".',
-    initialCode: 'print("")',
-    testCode: 'import sys\nassert "Synthetix Ativado" in sys.stdout.getvalue()',
-    xp: 10,
-    dependencies: []
-  },
-  {
-    id: 'core-2',
-    module: '1. Primeiros Passos',
-    title: 'Variáveis e Números',
-    theory: 'Variáveis armazenam dados. Em Python, usamos o sinal de = para atribuição. Crie duas variáveis, a = 10 e b = 20, e uma terceira c que seja a soma das duas.',
-    initialCode: 'a = 10\n# Defina b e c\n',
-    testCode: 'assert b == 20 and c == 30',
-    xp: 15,
-    dependencies: []
-  },
-  {
-    id: 'core-3',
-    module: '2. Estruturas de Dados',
-    title: 'Listas: O Poder das Coleções',
-    theory: 'Listas são coleções ordenadas e mutáveis. Elas podem conter qualquer tipo de dado. Adicione o número 42 à lista dada usando o método .append().',
-    initialCode: 'minha_lista = [1, 2, 3]\n# Adicione o 42 aqui\n',
-    testCode: 'assert minha_lista == [1, 2, 3, 42]',
+    id: 'f-1',
+    module: '01. Arquitetura Python',
+    title: 'Dinâmica e Objetos',
+    theory: 'Em Python, TUDO é um objeto. Quando você cria `x = 10`, você está criando um objeto do tipo `int` e uma referência chamada `x`. Use a função `id()` para descobrir o endereço de memória de uma variável e `type()` para seu tipo. Desafio: crie uma variável `a` com valor 5 e uma variável `b` que aponte para o mesmo ID de `a`.',
+    initialCode: 'a = 5\nb = # Faça b apontar para a',
+    testCode: 'assert a == 5 and b == 5 and id(a) == id(b)',
     xp: 20,
     dependencies: []
   },
   {
-    id: 'core-4',
-    module: '2. Estruturas de Dados',
-    title: 'Dicionários (Chave-Valor)',
-    theory: 'Dicionários mapeiam chaves a valores. São extremamente rápidos para busca. Crie um dicionário chamado "precos" onde "maça" custa 5 e "banana" custa 3.',
-    initialCode: 'precos = {}',
-    testCode: 'assert precos["maça"] == 5 and precos["banana"] == 3',
-    xp: 25,
-    dependencies: []
-  },
-
-  // Módulo 3: Controle de Fluxo
-  {
-    id: 'core-5',
-    module: '3. Controle de Fluxo',
-    title: 'Condicionais if/else',
-    theory: 'Decisões no código! Verifique se a idade é maior ou igual a 18. Se for, imprima "Adulto", caso contrário, "Menor".',
-    initialCode: 'idade = 20\n# Escreva seu if aqui',
-    testCode: 'import sys\noutput = sys.stdout.getvalue()\nassert "Adulto" in output',
+    id: 'f-2',
+    module: '01. Arquitetura Python',
+    title: 'Imutabilidade de Inteiros',
+    theory: 'Python pré-aloca inteiros pequenos (interning) entre -5 e 256 para performance. Se você criar duas variáveis com valor 100, elas terão o mesmo ID. Mas e se for 300? Verifique se `x` e `y` com valor 300 são o mesmo objeto usando o operador `is`.',
+    initialCode: 'x = 300\ny = 300\niguais = # use o operador is',
+    testCode: 'assert iguais == (x is y)',
     xp: 30,
     dependencies: []
   },
+
+  // --- MÓDULO 2: STRINGS E MANIPULAÇÃO DE DADOS ---
   {
-    id: 'core-6',
-    module: '3. Controle de Fluxo',
-    title: 'Loops de Repetição',
-    theory: 'Use o loop for e a função range() para somar todos os números de 0 a 9 em uma variável chamada "total".',
-    initialCode: 'total = 0\n# Escreva o loop aqui',
-    testCode: 'assert total == sum(range(10))',
-    xp: 35,
+    id: 's-1',
+    module: '02. Strings Avançadas',
+    title: 'F-Strings e Formatação',
+    theory: 'F-Strings não são apenas para imprimir variáveis. Elas permitem executar expressões e formatar números. Formate o número `pi = 3.14159` para ter apenas 2 casas decimais dentro de uma f-string na variável `resultado`.',
+    initialCode: 'pi = 3.14159\nresultado = f""',
+    testCode: 'assert resultado == "3.14"',
+    xp: 25,
     dependencies: []
   },
-
-  // Módulo 4: Funções e Modularização
   {
-    id: 'core-7',
-    module: '4. Funções e Escopo',
-    title: 'Definindo Funções',
-    theory: 'Funções evitam repetição de código. Crie uma função chamada "saudacao" que recebe um nome e retorna "Olá, {nome}!".',
-    initialCode: 'def saudacao(nome):\n    return f""',
-    testCode: 'assert saudacao("Ana") == "Olá, Ana!"',
+    id: 's-2',
+    module: '02. Strings Avançadas',
+    title: 'Slicing Profissional',
+    theory: 'O slicing `[start:stop:step]` é uma das ferramentas mais poderosas do Python. Dada a string "PythonRockstar", extraia apenas a palavra "nohtyP" (Python invertido) usando apenas slicing.',
+    initialCode: 's = "PythonRockstar"\ninvertido = # use slicing',
+    testCode: 'assert invertido == "nohtyP"',
     xp: 40,
     dependencies: []
   },
 
-  // Módulo 5: Programação Orientada a Objetos
+  // --- MÓDULO 3: LÓGICA E ESTRUTURAS ---
   {
-    id: 'core-8',
-    module: '5. Orientação a Objetos',
-    title: 'Classes e Atributos',
-    theory: 'POO permite modelar o mundo real. Crie uma classe "Robo" com um atributo "nome" definido no método __init__.',
-    initialCode: 'class Robo:\n    def __init__(self, nome):\n        pass',
-    testCode: 'r = Robo("R2D2")\nassert r.nome == "R2D2"',
-    xp: 60,
-    dependencies: []
-  },
-
-  // Módulo 6: Python Avançado
-  {
-    id: 'core-9',
-    module: '6. Python Pro',
-    title: 'List Comprehensions',
-    theory: 'Crie uma lista "pares" que contenha os números pares de 0 a 20 usando apenas uma linha de código.',
-    initialCode: 'pares = []',
-    testCode: 'assert pares == [x for x in range(21) if x % 2 == 0]',
-    xp: 70,
-    dependencies: []
-  },
-
-  // --- FASE 2: BIBLIOTECAS E ECOSSISTEMA ---
-
-  // Módulo: NumPy (Processamento Numérico)
-  {
-    id: 'lib-1',
-    module: '7. Biblioteca NumPy',
-    title: 'Arrays Matemáticos',
-    theory: 'NumPy é a base da Ciência de Dados. Converta a lista Python em um array NumPy e calcule a soma.',
-    initialCode: 'import numpy as np\nlista = [10, 20, 30]\narr = np.array(lista)\nsoma = 0 # Calcule a soma do array',
-    testCode: 'import numpy as np\nassert isinstance(arr, np.ndarray) and soma == 60',
+    id: 'l-1',
+    module: '03. Estruturas de Dados',
+    title: 'List Methods vs Slicing',
+    theory: 'Adicionar elementos no final de uma lista (`.append()`) é O(1), mas inserir no início (`.insert(0, x)`) é O(n). Remova o último elemento da lista `dados` e adicione-o no início sem usar métodos, apenas concatenação e slicing.',
+    initialCode: 'dados = [1, 2, 3, 4, 5]\n# Reorganize dados',
+    testCode: 'assert dados == [5, 1, 2, 3, 4]',
     xp: 50,
-    dependencies: ['numpy']
+    dependencies: []
+  },
+  {
+    id: 'l-2',
+    module: '03. Estruturas de Dados',
+    title: 'Deep Copy vs Shallow Copy',
+    theory: 'Ao copiar listas aninhadas, `list.copy()` cria apenas uma cópia rasa. Se você mudar um sub-item na cópia, ele muda na original. Use o módulo `copy` para criar uma `deepcopy` de `lista_a` em `lista_b`.',
+    initialCode: 'import copy\nlista_a = [[1, 2], [3, 4]]\nlista_b = # deepcopy aqui',
+    testCode: 'import copy\nlista_b[0][0] = 99\nassert lista_a[0][0] == 1',
+    xp: 60,
+    dependencies: []
   },
 
-  // Módulo: Pandas (Análise de Dados)
+  // --- MÓDULO 4: FUNÇÕES E FUNCIONAL ---
   {
-    id: 'lib-2',
-    module: '8. Biblioteca Pandas',
-    title: 'DataFrames',
-    theory: 'Pandas é o Excel do Python. Crie um DataFrame a partir do dicionário "dados" e mostre a média da coluna "valor".',
-    initialCode: 'import pandas as pd\ndados = {"A": [1, 2, 3], "B": [4, 5, 6]}\ndf = pd.DataFrame(dados)\nmedia = 0 # Calcule a média da coluna A',
-    testCode: 'import pandas as pd\nassert media == 2.0',
-    xp: 60,
-    dependencies: ['pandas']
+    id: 'fn-1',
+    module: '04. Funções Ninja',
+    title: 'Args e Kwargs',
+    theory: 'Funções flexíveis usam `*args` (tupla de argumentos posicionais) e `**kwargs` (dicionário de argumentos nomeados). Crie uma função `multi_soma` que some todos os números passados como argumentos posicionais.',
+    initialCode: 'def multi_soma(*args):\n    pass',
+    testCode: 'assert multi_soma(1, 2, 3, 4) == 10 and multi_soma(10, 20) == 30',
+    xp: 50,
+    dependencies: []
+  },
+
+  // --- MÓDULO 5: POO E ENGENHARIA ---
+  {
+    id: 'poo-1',
+    module: '05. POO Avançada',
+    title: 'Métodos Dunder (Mágicos)',
+    theory: 'Métodos como `__str__`, `__repr__` e `__add__` permitem que suas classes se comportem como tipos nativos. Implemente o método `__len__` na classe `Playlist` para que `len(playlist)` retorne o número de músicas.',
+    initialCode: 'class Playlist:\n    def __init__(self, musicas):\n        self.musicas = musicas\n    # Implemente __len__',
+    testCode: 'p = Playlist(["Song 1", "Song 2"])\nassert len(p) == 2',
+    xp: 80,
+    dependencies: []
   }
 ];
