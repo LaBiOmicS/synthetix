@@ -1,51 +1,54 @@
 import type { Lesson } from '../types';
 
 export const level8: Lesson[] = [
+  // --- ABORDAGEM SOLTA (DICIONÁRIOS) ---
   {
     id: 'lvl8-e1-c1',
     module: 'Nível 8: O Ciclo de Vida CRUD',
     phase: 'Fase 2: Arquiteto de Software',
-    concept: 'create e validação',
-    title: 'Etapa 1: Create com Validação',
-    theory: 'Não aceite qualquer dado! Valide se o nome tem pelo menos 3 caracteres antes de adicionar na agenda.',
-    initialCode: 'class Agenda:\n    def __init__(self):\n        self.contatos = []\n    def adicionar(self, nome):\n        # Se len(nome) >= 3, adicione',
-    testCode: 'a = Agenda()\na.adicionar("An")\nassert len(a.contatos) == 0\na.adicionar("Ana")\nassert "Ana" in a.contatos',
-    xp: 80,
+    concept: 'crud básico (solto)',
+    title: 'Etapa 1: O CRUD Solto',
+    theory: 'Começamos com o CRUD "solto": apenas dicionários e listas. Crie uma lista `agenda` e uma função `adicionar(nome, telefone)` que salva um dict.',
+    initialCode: 'agenda = []\ndef adicionar(nome, telefone):\n    # adicione o dict aqui',
+    testCode: 'adicionar("Ana", "123")\nassert agenda[0] == {"nome": "Ana", "telefone": "123"}',
+    xp: 60,
     dependencies: []
   },
   {
     id: 'lvl8-e1-c2',
     module: 'Nível 8: O Ciclo de Vida CRUD',
     phase: 'Fase 2: Arquiteto de Software',
-    concept: 'read avançado',
-    title: 'Etapa 2: Busca por Padrão',
-    theory: 'Em vez de buscar um nome exato, encontre todos os contatos que contenham uma sub-string.',
-    initialCode: 'class Agenda:\n    def __init__(self):\n        self.contatos = ["Ana", "Anabela", "Bia"]\n    def buscar(self, termo):\n        # retorne lista com nomes que contêm termo',
-    testCode: 'a = Agenda()\nassert "Ana" in a.buscar("An") and "Anabela" in a.buscar("An")',
-    xp: 80,
+    concept: 'read solto',
+    title: 'Etapa 2: Buscando no Solto',
+    theory: 'Busque o telefone de um contato pelo nome dentro da nossa lista de dicionários.',
+    initialCode: 'agenda = [{"nome": "Ana", "telefone": "123"}]\ndef buscar(nome):\n    # retorne telefone ou None',
+    testCode: 'assert buscar("Ana") == "123" and buscar("Bia") is None',
+    xp: 60,
     dependencies: []
   },
+
+  // --- ABORDAGEM PROFISSIONAL (DATACLASSES E INTERFACES) ---
   {
-    id: 'lvl8-e1-c3',
+    id: 'lvl8-e2-c1',
     module: 'Nível 8: O Ciclo de Vida CRUD',
     phase: 'Fase 2: Arquiteto de Software',
-    concept: 'tratamento de erro',
-    title: 'Etapa 3: Update com Segurança',
-    theory: 'O que acontece se você tentar editar um nome que não existe? Use um `if` ou `try` para tratar essa falha.',
-    initialCode: 'class Agenda:\n    def __init__(self):\n        self.contatos = ["Ana"]\n    def editar(self, antigo, novo):\n        # se antigo existir na lista, altere, senão retorne False',
-    testCode: 'a = Agenda()\nassert a.editar("Bia", "Beatriz") is False',
+    concept: 'dataclasses',
+    title: 'Etapa 6: O Modelo com DataClass',
+    theory: 'Agora, a abordagem profissional. Use `@dataclass` para definir o formato do seu objeto. Isso garante que todo contato tenha nome e telefone.',
+    initialCode: 'from dataclasses import dataclass\n\n@dataclass\nclass Contato:\n    # defina nome: str e telefone: str',
+    testCode: 'c = Contato("Ana", "123")\nassert c.nome == "Ana"',
     xp: 90,
     dependencies: []
   },
   {
-    id: 'lvl8-e1-c4',
+    id: 'lvl8-e2-c2',
     module: 'Nível 8: O Ciclo de Vida CRUD',
     phase: 'Fase 2: Arquiteto de Software',
-    concept: 'delete',
-    title: 'Etapa 4: Delete com feedback',
-    theory: 'Ao deletar, o sistema deve confirmar se o nome existia. Remova e retorne True, ou False se não encontrar.',
-    initialCode: 'class Agenda:\n    def __init__(self):\n        self.contatos = ["Ana"]\n    def remover(self, nome):\n        # remova e retorne o status',
-    testCode: 'a = Agenda()\nassert a.remover("Ana") is True and a.remover("Zeca") is False',
+    concept: 'type hints/interfaces',
+    title: 'Etapa 7: CRUD Estruturado',
+    theory: 'A abordagem profissional usa tipos. Refaça a função `adicionar` para aceitar um objeto `Contato` e não apenas um dicionário.',
+    initialCode: 'def adicionar(contato: Contato):\n    # adicione na lista tipada',
+    testCode: 'c = Contato("Ana", "123")\nadicionar(c)\nassert isinstance(agenda[0], Contato)',
     xp: 90,
     dependencies: []
   }
