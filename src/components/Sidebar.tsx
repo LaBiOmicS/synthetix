@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Code2, CheckCircle2, ChevronRight, ChevronDown } from 'lucide-react';
+import { Code2, CheckCircle2, ChevronRight, ChevronDown, Medal } from 'lucide-react';
 import type { Lesson } from '../data/lessons';
 import { cn } from '../utils/cn';
 
@@ -26,11 +26,16 @@ export function Sidebar({
   onSelectLesson,
   onResetProgress,
 }: SidebarProps) {
-  // Estado para controlar quais módulos/níveis estão expandidos (inicia vazio = todos fechados)
+  // Estado para controlar quais módulos/níveis estão expandidos
   const [expandedModules, setExpandedModules] = useState<Record<string, boolean>>({});
 
   // Manter a ordem dos módulos (Níveis) conforme aparecem nas lições
   const moduleOrder = Array.from(new Set(lessons.map(l => l.module)));
+
+  // Extrair badges desbloqueados
+  const unlockedBadges = lessons
+    .filter(l => l.badge && completedLessons.includes(l.id))
+    .map(l => l.badge);
 
   // Agrupar lições por módulo
   const modules = lessons.reduce((acc, lesson, index) => {
@@ -53,6 +58,7 @@ export function Sidebar({
     )}>
       {/* Brand & Progress Section */}
       <div className="p-5 border-b border-slate-800 min-w-[320px]">
+        {/* ... Brand ... */}
         <div className="flex items-center gap-3 mb-5">
           <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/20">
             <Code2 className="text-white" size={24} />
@@ -63,6 +69,7 @@ export function Sidebar({
           </div>
         </div>
 
+        {/* Progress */}
         <div className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700/50">
           <div className="flex justify-between items-end mb-2">
             <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider">Nível {level}</span>
@@ -73,6 +80,25 @@ export function Sidebar({
               className="h-full bg-blue-500 transition-all duration-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"
               style={{ width: `${progressInLevel}%` }}
             />
+          </div>
+        </div>
+
+        {/* Conquistas */}
+        <div className="mt-6">
+          <h3 className="px-1 text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">
+            Conquistas
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {unlockedBadges.length > 0 ? (
+              unlockedBadges.map(badge => (
+                <div key={badge} className="flex items-center gap-1.5 bg-yellow-500/10 text-yellow-500 text-[10px] font-bold px-2 py-1 rounded-full border border-yellow-500/20">
+                  <Medal size={12} />
+                  <span>{badge}</span>
+                </div>
+              ))
+            ) : (
+              <p className="text-[9px] text-slate-600 italic px-1">Complete projetos para ganhar badges.</p>
+            )}
           </div>
         </div>
       </div>

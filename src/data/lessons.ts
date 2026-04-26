@@ -3,6 +3,7 @@ export interface Lesson {
   title: string;
   module: string;
   concept: string;
+  badge?: string; // Opcional: Nome do badge concedido
   theory: string;
   initialCode: string;
   testCode: string;
@@ -238,6 +239,7 @@ export const lessons: Lesson[] = [
     id: 'lvl2-p1',
     module: 'Nível 2: O Fluxo da Lógica',
     concept: 'projeto de síntese',
+    badge: 'Guardião Lógico',
     title: '🛡️ MISSÃO ESPECIAL: A Guardiã do Portal',
     theory: 'HORA DO PROJETO! Você vai construir um sistema de segurança real. Passo 1: Peça o nome e a idade (use int()). Passo 2: Se idade < 18, negue. Passo 3: Se >= 18, peça o código. Se o código for "SYNTH-2024", libere ACESSO TOTAL. Se for "GUEST", libere ACESSO VISITANTE. Use f-strings no final!',
     initialCode: '# --- SISTEMA DE SEGURANÇA SYNTHETIX ---\n# 1. Peça o nome e idade\n\n# 2. Implemente a lógica de acesso\n',
@@ -361,6 +363,7 @@ export const lessons: Lesson[] = [
     id: 'lvl3-p1',
     module: 'Nível 3: O Domínio da Repetição',
     concept: 'projeto de análise de dados',
+    badge: 'Analista de Dados',
     title: '📊 PROJETO: Radar de Inteligência',
     theory: 'HORA DO PROJETO! Você vai processar dados reais. 1. Crie uma lista "leituras" com [0.85, 0.4, 0.9, 0.72, 0.3]. 2. Use um loop para criar uma lista "filtradas" apenas com valores > 0.7. 3. Calcule a média das filtradas. 4. Crie um dicionário "relatorio" com as chaves: "total", "validos" e "media". Exiba tudo!',
     initialCode: '# --- RADAR DE INTELIGÊNCIA SYNTHETIX ---\n# 1. Lista de leituras\nleituras = [0.85, 0.4, 0.9, 0.72, 0.3]\n\n# 2. Filtragem e Processamento\n',
