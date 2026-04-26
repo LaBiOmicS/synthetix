@@ -22,18 +22,18 @@ export function LessonContent({
   isGenerating
 }: LessonContentProps) {
   return (
-    <div className="p-5 lg:p-8 space-y-6">
-      <div className="flex items-center gap-2 text-blue-400">
-        <BookOpen size={18} className="lg:w-5 lg:h-5" />
-        <span className="font-bold uppercase tracking-wider text-[10px] lg:text-xs">Instruções</span>
+    <div className="p-8 lg:p-12 space-y-8 h-full overflow-y-auto">
+      <div className="flex items-center gap-3 text-blue-400">
+        <BookOpen size={20} />
+        <span className="font-bold uppercase tracking-[0.2em] text-[11px]">Instruções</span>
       </div>
       
-      <h1 className="text-xl lg:text-2xl font-bold text-white tracking-tight leading-tight">
+      <h1 className="text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
         {currentLesson.title}
       </h1>
 
-      <div className="prose prose-invert prose-slate max-w-none">
-        <p className="text-slate-300 leading-relaxed text-sm lg:text-base">
+      <div className="prose prose-invert prose-lg max-w-none">
+        <p className="text-slate-300 leading-relaxed text-base lg:text-lg">
           {currentLesson.theory}
         </p>
       </div>
