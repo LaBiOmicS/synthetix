@@ -37,7 +37,7 @@ export function Sidebar({
     if (!acc[lesson.phase][lesson.module]) acc[lesson.phase][lesson.module] = [];
     acc[lesson.phase][lesson.module].push({ ...lesson, originalIndex: index });
     return acc;
-  }, {} as Record<string, Record<string, any[]>>);
+  }, {} as Record<string, Record<string, (Lesson & { originalIndex: number })[]>>);
 
   const toggleKey = (key: string) => {
     setExpandedModules(prev => ({ ...prev, [key]: !prev[key] }));
@@ -93,7 +93,8 @@ export function Sidebar({
               {Object.entries(modules).map(([moduleName, moduleLessons]) => {
                 const moduleKey = `${phase}-${moduleName}`;
                 const isExpanded = !!expandedModules[moduleKey];
-                const completedInModule = moduleLessons.filter((l: any) => completedLessons.includes(l.id)).length;
+                const completedInModule = moduleLessons.filter(l => completedLessons.includes(l.id)).length;
+
                 return (
                   <div key={moduleKey} className="space-y-1">
                     <button onClick={() => toggleKey(moduleKey)} className={cn("w-full flex items-center justify-between p-3 rounded-xl transition-all", isExpanded ? "bg-slate-800/60 text-slate-200" : "hover:bg-slate-800/30 text-slate-400")}>
@@ -105,7 +106,7 @@ export function Sidebar({
                     </button>
                     {isExpanded && (
                       <div className="ml-4 pl-3 border-l border-slate-800 space-y-1 mt-1 animate-in fade-in duration-200">
-                        {moduleLessons.map((l: any) => (
+                        {moduleLessons.map((l) => (
                           <button key={l.id} onClick={() => onSelectLesson(l.originalIndex)} className={cn("w-full text-left p-2 rounded-lg text-xs font-medium transition-all", currentLessonIndex === l.originalIndex ? "bg-blue-600/20 text-blue-100" : "text-slate-500 hover:text-slate-300")}>
                             {l.title}
                           </button>
