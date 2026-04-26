@@ -145,6 +145,7 @@ export default function App() {
 
   return (
     <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden font-sans">
+      {/* Sidebar - Fixa na Esquerda */}
       <Sidebar 
         lessons={allLessons}
         currentLessonIndex={currentLessonIndex}
@@ -157,14 +158,16 @@ export default function App() {
         onResetProgress={handleResetProgress}
       />
 
-      <main className="flex-1 flex flex-col min-w-0 relative h-full">
+      {/* Main Content Area */}
+      <main className="flex-1 flex flex-col min-w-0 relative h-full bg-slate-950">
         <Header 
           xp={xp}
           onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
         />
 
         <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-          <div className="w-full lg:w-[400px] xl:w-[450px] flex-shrink-0 border-b lg:border-b-0 lg:border-r border-slate-800 bg-slate-900/20 overflow-y-auto h-[40vh] lg:h-full">
+          {/* Instruções e Teoria (Centro-Esquerda no Main) */}
+          <div className="w-full lg:w-[450px] flex-shrink-0 border-b lg:border-b-0 lg:border-r border-slate-800 bg-slate-900/30 overflow-y-auto">
             <LessonContent 
               currentLesson={currentLesson}
               isSuccess={isSuccess}
@@ -176,8 +179,9 @@ export default function App() {
             />
           </div>
 
-          <div className="flex-1 flex flex-col bg-slate-950 min-h-0 overflow-hidden">
-            <div className="flex-1 min-h-[300px]">
+          {/* Editor e Console (Direita no Main) */}
+          <div className="flex-1 flex flex-col bg-slate-950 min-h-0">
+            <div className="flex-1">
               <Editor 
                 code={code}
                 isRunning={isRunning}
@@ -185,7 +189,7 @@ export default function App() {
                 onRun={handleRun}
               />
             </div>
-            <div className="h-[25vh] lg:h-1/3 min-h-[150px]">
+            <div className="h-[200px] lg:h-[30%]">
               <Console 
                 output={output}
                 isSuccess={isSuccess}
