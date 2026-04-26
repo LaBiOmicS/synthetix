@@ -144,7 +144,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden font-sans">
+    <div className="flex h-screen w-full bg-slate-950 text-slate-100 overflow-hidden font-sans">
       {/* Sidebar - Fixa na Esquerda */}
       <Sidebar 
         lessons={allLessons}

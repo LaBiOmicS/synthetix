@@ -32,13 +32,15 @@ export function Editor({ code, isRunning, onChange, onRun }: EditorProps) {
         <CodeMirror
           value={code}
           height="100%"
+          width="100%"
           theme="dark"
           extensions={[python()]}
           onChange={onChange}
-          className="text-sm lg:text-base h-full"
+          className="text-sm lg:text-base h-full w-full"
           style={{ 
             fontSize: 'var(--editor-font-size, 15px)',
-            height: '100%'
+            height: '100%',
+            width: '100%'
           }}
         />
       </div>
