@@ -356,5 +356,16 @@ export const lessons: Lesson[] = [
     testCode: 'import sys\noutput = sys.stdout.getvalue()\nassert "Dev1" in output and "Dev2" in output',
     xp: 60,
     dependencies: []
+  },
+  {
+    id: 'lvl3-p1',
+    module: 'Nível 3: O Domínio da Repetição',
+    concept: 'projeto de análise de dados',
+    title: '📊 PROJETO: Radar de Inteligência',
+    theory: 'HORA DO PROJETO! Você vai processar dados reais. 1. Crie uma lista "leituras" com [0.85, 0.4, 0.9, 0.72, 0.3]. 2. Use um loop para criar uma lista "filtradas" apenas com valores > 0.7. 3. Calcule a média das filtradas. 4. Crie um dicionário "relatorio" com as chaves: "total", "validos" e "media". Exiba tudo!',
+    initialCode: '# --- RADAR DE INTELIGÊNCIA SYNTHETIX ---\n# 1. Lista de leituras\nleituras = [0.85, 0.4, 0.9, 0.72, 0.3]\n\n# 2. Filtragem e Processamento\n',
+    testCode: 'import sys\nassert "relatorio" in locals()\nassert len(filtradas) == 3\nassert relatorio["validos"] == 3\nassert "media" in relatorio',
+    xp: 250,
+    dependencies: ['lvl3-e3-c4']
   }
 ];
