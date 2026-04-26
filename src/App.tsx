@@ -7,6 +7,7 @@ import { Header } from './components/Header';
 import { LessonContent } from './components/LessonContent';
 import { Editor } from './components/Editor';
 import { Console } from './components/Console';
+import { CelebrationModal } from './components/CelebrationModal';
 
 import { useAI } from './context/AIContext';
 
@@ -15,6 +16,7 @@ export default function App() {
   const { apiKey } = useAI();
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [customLessons, setCustomLessons] = useState<any[]>([]);
+  const [isCelebrationOpen, setIsCelebrationOpen] = useState(false);
   
   // Mesclar lições estáticas com customizadas
   const allLessons = useMemo(() => [...lessons, ...customLessons], [customLessons]);
@@ -79,6 +81,11 @@ export default function App() {
             const newCompleted = [...completedLessons, currentLesson.id];
             setCompletedLessons(newCompleted);
             localStorage.setItem('completedLessons', JSON.stringify(newCompleted));
+
+            // Se for um projeto, abrir celebração
+            if (currentLesson.concept.includes('projeto')) {
+              setIsCelebrationOpen(true);
+            }
           }
         }
       } catch {
@@ -144,7 +151,13 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen w-full bg-slate-950 text-slate-100 overflow-hidden font-sans">
+    <div className="flex h-screen w-full bg-slate-950 text-slate-100 overflow-hidden font-sans text-sm lg:text-base">
+      <CelebrationModal 
+        isOpen={isCelebrationOpen}
+        onClose={() => setIsCelebrationOpen(false)}
+        title={currentLesson?.title || ''}
+        xp={currentLesson?.xp || 0}
+      />
       {/* Sidebar - Fixa na Esquerda */}
       <Sidebar 
         lessons={allLessons}
