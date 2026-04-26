@@ -5,6 +5,7 @@ import { level3 } from './lvl3';
 import { level4 } from './lvl4';
 import { level5 } from './lvl5';
 import { level6 } from './lvl6';
+import { level7 } from './lvl7';
 
 export const lessons: Lesson[] = [
   ...level1,
@@ -12,5 +13,6 @@ export const lessons: Lesson[] = [
   ...level3,
   ...level4,
   ...level5,
-  ...level6
+  ...level6,
+  ...level7
 ];
