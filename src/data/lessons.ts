@@ -2,8 +2,9 @@ export interface Lesson {
   id: string;
   title: string;
   module: string;
+  phase: string;
   concept: string;
-  badge?: string; // Opcional: Nome do badge concedido
+  badge?: string;
   theory: string;
   initialCode: string;
   testCode: string;
@@ -12,10 +13,11 @@ export interface Lesson {
 }
 
 export const lessons: Lesson[] = [
-  // --- NÍVEL 1: FUNDAMENTOS E INTERAÇÃO (O DESPERTAR) ---
+  // --- NÍVEL 1: FUNDAMENTOS E INTERAÇÃO ---
   {
     id: 'lvl1-e1-c1',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'função print',
     title: 'Etapa 1: A Voz do Código',
     theory: 'Tudo começa com a função `print()`. Ela é a voz do seu computador. Use-a para exibir seu primeiro nome entre aspas.',
@@ -27,6 +29,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl1-e1-c2',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'strings',
     title: 'Etapa 2: Citando Textos',
     theory: 'Em Python, textos são chamados de "Strings". Eles precisam de aspas. Exiba a frase "Python é vida!".',
@@ -38,6 +41,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl1-e1-c3',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'números',
     title: 'Etapa 3: Números Puros',
     theory: 'Números não precisam de aspas. Tente imprimir o número 2024 diretamente.',
@@ -49,6 +53,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl1-e2-c1',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'variáveis',
     title: 'Etapa 4: Criando Gavetas',
     theory: 'Variáveis são como gavetas com etiquetas. Crie uma variável chamada `nome` e coloque seu nome nela.',
@@ -60,6 +65,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl1-e2-c2',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'tipos numéricos',
     title: 'Etapa 5: Guardando Números',
     theory: 'Agora crie uma variável chamada `xp` e dê o valor 100 a ela.',
@@ -71,6 +77,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl1-e2-c3',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'operadores aritméticos',
     title: 'Etapa 6: Somando Forças',
     theory: 'Você pode somar variáveis! Crie `a = 5`, `b = 5` e depois `c = a + b`.',
@@ -82,6 +89,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl1-e3-c1',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'input de dados',
     title: 'Etapa 7: O Scanner de Dados',
     theory: 'A função `input()` permite que o usuário fale com o código. Salve o que o usuário digitar em uma variável `resposta`.',
@@ -93,6 +101,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl1-e3-c2',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'f-strings',
     title: 'Etapa 8: F-Strings Mágicas',
     theory: 'Use f-strings para misturar texto e variáveis: `f"Oi {nome}"`. Exiba "Nível 1" usando uma variável `n = 1`.',
@@ -104,6 +113,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl1-e3-c3',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'manipulação de strings',
     title: 'Etapa 9: Multiplicador de Texto',
     theory: 'Sabia que pode multiplicar strings? Exiba "Ha" multiplicado por 3.',
@@ -115,6 +125,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl1-e3-c4',
     module: 'Nível 1: O Despertar',
+    phase: 'Fase 1: Fundamentos',
     concept: 'conclusão de nível',
     title: 'Etapa 10: O Final do Despertar',
     theory: 'Parabéns! Você completou o primeiro nível. Imprima "Mestre do Nível 1" para selar sua conquista.',
@@ -128,6 +139,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e1-c1',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'tipo booleano',
     title: 'Etapa 1: Verdade ou Falso?',
     theory: 'O computador entende o mundo como Verdadeiro (True) ou Falso (False). Crie uma variável `ligado` e defina como True.',
@@ -139,6 +151,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e1-c2',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'operador de igualdade',
     title: 'Etapa 2: A Balança do Código',
     theory: 'Usamos `==` para comparar se dois valores são iguais. Verifique se 10 é igual a 10 e guarde em `resultado`.',
@@ -150,6 +163,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e1-c3',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'operador de diferença',
     title: 'Etapa 3: Notando a Diferença',
     theory: 'O operador `!=` verifica se os valores são diferentes. Verifique se "Python" é diferente de "Java".',
@@ -161,6 +175,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e2-c1',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'operadores de comparação',
     title: 'Etapa 4: Medindo Grandezas',
     theory: 'Use `>` para maior e `<` para menor. Verifique se sua idade (ex: 25) é maior que 18.',
@@ -172,6 +187,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e2-c2',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'condicional if',
     title: 'Etapa 5: A Encruzilhada',
     theory: 'O `if` executa código apenas se a condição for real. Se `chuva` for True, imprima "Levar guarda-chuva".',
@@ -183,6 +199,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e2-c3',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'condicional else',
     title: 'Etapa 6: O Plano B',
     theory: 'O `else` roda quando o `if` falha. Se `sol` for True, imprima "Praia", senão, "Casa".',
@@ -194,6 +211,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e3-c1',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'condicional elif',
     title: 'Etapa 7: Múltiplas Escolhas',
     theory: 'Use `elif` para testar várias condições. Se `ponto` for 10 imprima "A", elif 5 imprima "B", else "C".',
@@ -205,6 +223,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e3-c2',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'operador lógico and',
     title: 'Etapa 8: Exigência Dupla',
     theory: 'O `and` exige que as DUAS coisas sejam verdadeiras. Verifique se `tem_chave` e `conhece_senha` são True.',
@@ -216,6 +235,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e3-c3',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'operador lógico or',
     title: 'Etapa 9: Uma ou Outra',
     theory: 'O `or` aceita se pelo menos UMA for verdadeira. Verifique se é `sabado` ou `domingo`.',
@@ -227,6 +247,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-e3-c4',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'desafio de lógica',
     title: 'Etapa 10: O Mestre da Lógica',
     theory: 'Combine tudo! Se `idade >= 18` e `tem_ingresso`, imprima "Entrada Liberada".',
@@ -238,6 +259,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl2-p1',
     module: 'Nível 2: O Fluxo da Lógica',
+    phase: 'Fase 1: Fundamentos',
     concept: 'projeto de síntese',
     badge: 'Guardião Lógico',
     title: '🛡️ MISSÃO ESPECIAL: A Guardiã do Portal',
@@ -252,6 +274,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e1-c1',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'listas',
     title: 'Etapa 1: O Primeiro Inventário',
     theory: 'Listas guardam vários itens em uma única variável. Crie uma lista chamada `frutas` com "Maçã", "Banana" e "Uva".',
@@ -263,6 +286,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e1-c2',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'índices de listas',
     title: 'Etapa 2: Acesso por Coordenadas',
     theory: 'O primeiro item de uma lista está no índice 0. Pegue o primeiro item da lista `compras` e salve na variável `primeiro`.',
@@ -274,6 +298,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e1-c3',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'método append',
     title: 'Etapa 3: Expansão Infinita',
     theory: 'Use `.append()` para adicionar um item ao final da lista. Adicione "IA" à lista `tecnologias`.',
@@ -285,6 +310,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e2-c1',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'loop for',
     title: 'Etapa 4: A Batida do For',
     theory: 'O loop `for` percorre cada item de uma lista. Percorra a lista `nomes` e imprima cada um deles.',
@@ -296,6 +322,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e2-c2',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'função range',
     title: 'Etapa 5: O Contador Automático',
     theory: '`range(5)` gera números de 0 a 4. Use um `for` com `range(3)` para imprimir a palavra "Eco".',
@@ -307,6 +334,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e2-c3',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'loop while',
     title: 'Etapa 6: O Sentinela While',
     theory: 'O `while` repete enquanto uma condição for True. Faça o contador `c` chegar a 3 (enquanto c < 3, imprima "Oi" e aumente c).',
@@ -318,6 +346,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e3-c1',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'filtro em loops',
     title: 'Etapa 7: O Filtro de Elite',
     theory: 'Combine `for` e `if`. Percorra `numeros` e só imprima se o número for maior que 10.',
@@ -329,6 +358,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e3-c2',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'dicionários',
     title: 'Etapa 8: O Mapa de Tesouros',
     theory: 'Dicionários usam Chaves:Valores. Crie um dicionário `perfil` com "nome": "Agente" e "xp": 1000.',
@@ -340,6 +370,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e3-c3',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'acesso a dicionários',
     title: 'Etapa 9: Consultando o Oráculo',
     theory: 'Acesse um valor pela sua chave. Salve o valor da chave "status" do dicionário `bot` na variável `s`.',
@@ -351,6 +382,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-e3-c4',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'síntese de dados',
     title: 'Etapa 10: O Maestro de Dados',
     theory: 'Desafio Final do Nível! Percorra a lista `usuarios` (que são dicionários) e imprima o "nome" de cada um.',
@@ -362,6 +394,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl3-p1',
     module: 'Nível 3: O Domínio da Repetição',
+    phase: 'Fase 1: Fundamentos',
     concept: 'projeto de análise de dados',
     badge: 'Analista de Dados',
     title: '📊 PROJETO: Radar de Inteligência',
@@ -369,13 +402,14 @@ export const lessons: Lesson[] = [
     initialCode: '# --- RADAR DE INTELIGÊNCIA SYNTHETIX ---\n# 1. Lista de leituras\nleituras = [0.85, 0.4, 0.9, 0.72, 0.3]\n\n# 2. Filtragem e Processamento\n',
     testCode: 'import sys\nassert "relatorio" in locals()\nassert len(filtradas) == 3\nassert relatorio["validos"] == 3\nassert "media" in relatorio',
     xp: 250,
-    dependencies: ['lvl3-e3-c4']
+    dependencies: []
   },
 
   // --- NÍVEL 4: O ARQUITETO DE FUNÇÕES (A ARTE DA MODULARIZAÇÃO) ---
   {
     id: 'lvl4-e1-c1',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: 'definição de funções',
     title: 'Etapa 1: A Primeira Planta Baixa',
     theory: 'Funções são blocos de código reutilizáveis. Use `def` para criar uma função `ola_mundo` que imprima "Olá, Mundo!".',
@@ -387,6 +421,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl4-e1-c2',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: 'retorno de valores',
     title: 'Etapa 2: Devolvendo o Tesouro',
     theory: 'Funções podem devolver valores com `return`. Crie a função `dar_xp` que retorna o número 100.',
@@ -398,6 +433,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl4-e2-c1',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: 'argumentos posicionais',
     title: 'Etapa 3: Argumentos Obrigatórios',
     theory: 'Funções recebem dados via argumentos. Crie `soma(a, b)` que retorne a soma dos dois números.',
@@ -409,6 +445,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl4-e2-c2',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: 'argumentos com valor padrão',
     title: 'Etapa 4: Parâmetros Opcionais',
     theory: 'Defina um valor padrão para um argumento (ex: `saudacao="Olá"`). Crie `saudar(nome, msg="Oi")` que retorne a f-string.',
@@ -420,6 +457,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl4-e2-c3',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: '*args',
     title: 'Etapa 5: A Caixa de Ferramentas',
     theory: '`*args` permite passar um número variável de argumentos. Crie `media(*numeros)` que calcule a média de todos os números recebidos.',
@@ -431,6 +469,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl4-e3-c1',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: 'funções lambda',
     title: 'Etapa 6: O Poder do Lambda',
     theory: 'Lambdas são pequenas funções anônimas. Crie uma lambda chamada `dobro` que recebe `x` e retorna `x * 2`.',
@@ -442,6 +481,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl4-e3-c2',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: 'escopo de variáveis',
     title: 'Etapa 7: Protegendo o Núcleo',
     theory: 'Variáveis criadas dentro de uma função são locais. Crie `x = 10` (global) e uma função `teste()` que cria `x = 5` (local).',
@@ -453,6 +493,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl4-e3-c3',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: 'recursão',
     title: 'Etapa 8: O Segredo da Recursão',
     theory: 'Recursão é uma função que chama a si mesma. Crie uma função `fatorial(n)` que retorne 1 se n=0, senão `n * fatorial(n-1)`.',
@@ -464,6 +505,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl4-e4-c1',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: 'type hints',
     title: 'Etapa 9: Type Hinting Profissional',
     theory: 'Adicione "type hints" para documentar sua função. Crie `divisao(a: int, b: int) -> float`.',
@@ -475,6 +517,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl4-p1',
     module: 'Nível 4: O Arquiteto de Funções',
+    phase: 'Fase 1: Fundamentos',
     concept: 'projeto de modularização',
     badge: 'Arquiteto Python',
     title: '🛠️ PROJETO: Calculadora Modular',
@@ -489,6 +532,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-e1-c1',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'formatação de código',
     title: 'Etapa 1: O Organizador `black`',
     theory: '`black` é um formatador de código que garante um estilo consistente. A teoria é: "Código bem formatado é mais legível". Desafio: reescreva `x=1+2` para `x = 1 + 2`. Embora o Pyodide não rode o black, a prática de espaçamento é fundamental.',
@@ -500,6 +544,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-e1-c2',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'linting',
     title: 'Etapa 2: O Detetive `ruff`',
     theory: 'Linters como `ruff` ou `pylint` encontram erros antes de você rodar. Um erro comum é uma variável não usada. Crie uma função que declara `a=10` mas não a usa. O Mentor IA explicará por que um linter apontaria isso.',
@@ -511,6 +556,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-e2-c1',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'docstrings',
     title: 'Etapa 3: Documentando o Saber',
     theory: 'Docstrings (`"""..."""`) explicam o que uma função faz. Crie uma função `soma` e adicione a docstring "Soma dois números.".',
@@ -522,6 +568,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-e2-c2',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'gerenciamento de dependências',
     title: 'Etapa 4: O `requirements.txt`',
     theory: 'Este arquivo lista as bibliotecas que seu projeto precisa. Desafio: crie uma string multilinha que simule um requirements.txt com `numpy` e `pandas`.',
@@ -533,6 +580,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-e3-c1',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'variáveis de ambiente',
     title: 'Etapa 5: O Cofre de Segredos',
     theory: 'Nunca coloque senhas no código! Use variáveis de ambiente. Simule a leitura de uma com `os.environ.get("API_KEY")`.',
@@ -544,6 +592,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-e3-c2',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'argumentos de linha de comando',
     title: 'Etapa 6: O `sys.argv`',
     theory: '`sys.argv` é uma lista que contém os argumentos passados no terminal. O primeiro (`[0]`) é sempre o nome do script. Verifique isso.',
@@ -555,6 +604,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-e3-c3',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'ferramentas de CLI',
     title: 'Etapa 7: O `click` Profissional',
     theory: 'Bibliotecas como `click` facilitam a criação de CLIs. A estrutura básica usa o decorador `@click.command()`. Simule a criação de uma função `hello` decorada.',
@@ -566,6 +616,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-e4-c1',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'testes automatizados',
     title: 'Etapa 8: O Guardião `pytest`',
     theory: '`pytest` é um framework de testes. Funções de teste devem começar com `test_`. Crie uma função `test_soma` que usa `assert` para verificar se `1 + 1 == 2`.',
@@ -577,6 +628,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-e4-c2',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'empacotamento',
     title: 'Etapa 9: O `pyproject.toml`',
     theory: 'Este arquivo define como seu projeto é construído e distribuído. Ele contém seções como `[build-system]` e `[project]`. Simule a criação de uma string com essas seções.',
@@ -588,6 +640,7 @@ export const lessons: Lesson[] = [
   {
     id: 'lvl5-p1',
     module: 'Nível 5: O Arsenal do Engenheiro',
+    phase: 'Fase 1: Fundamentos',
     concept: 'projeto de engenharia de software',
     badge: 'Engenheiro Python',
     title: '🔧 PROJETO: Pacote Distribuível',
