@@ -1,4 +1,5 @@
-import { Code2, CheckCircle2, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { Code2, CheckCircle2, ChevronRight, ChevronDown } from 'lucide-react';
 import type { Lesson } from '../data/lessons';
 import { cn } from '../utils/cn';
 
@@ -25,6 +26,9 @@ export function Sidebar({
   onSelectLesson,
   onResetProgress,
 }: SidebarProps) {
+  // Estado para controlar quais módulos estão expandidos
+  const [expandedModules, setExpandedModules] = useState<Record<string, boolean>>({});
+
   // Manter a ordem dos módulos conforme aparecem nas lições
   const moduleOrder = Array.from(new Set(lessons.map(l => l.module)));
 
@@ -33,6 +37,13 @@ export function Sidebar({
     acc[lesson.module].push({ ...lesson, originalIndex: index });
     return acc;
   }, {} as Record<string, any[]>);
+
+  const toggleModule = (moduleName: string) => {
+    setExpandedModules(prev => ({
+      ...prev,
+      [moduleName]: !prev[moduleName]
+    }));
+  };
 
   return (
     <aside className={cn(
@@ -45,7 +56,7 @@ export function Sidebar({
             <Code2 className="text-white" size={20} />
           </div>
           <div>
-            <h2 className="font-bold text-base leading-tight uppercase tracking-tighter">Synthetix</h2>
+            <h2 className="font-bold text-base leading-tight uppercase tracking-tighter text-white">Synthetix</h2>
             <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">Python • Data • AI</p>
           </div>
         </div>
@@ -64,38 +75,63 @@ export function Sidebar({
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto p-3 space-y-5 min-w-[280px]">
-        {moduleOrder.map((moduleName) => (
-          <div key={moduleName} className="space-y-1.5">
-            <h3 className="px-3 text-[9px] font-bold text-slate-500 uppercase tracking-[0.15em] mb-2">
-              {moduleName}
-            </h3>
-            {modules[moduleName]?.map((lesson) => (
+      <nav className="flex-1 overflow-y-auto p-3 space-y-2 min-w-[280px]">
+        {moduleOrder.map((moduleName) => {
+          const isExpanded = expandedModules[moduleName];
+          const moduleLessons = modules[moduleName] || [];
+          const completedInModule = moduleLessons.filter(l => completedLessons.includes(l.id)).length;
+
+          return (
+            <div key={moduleName} className="space-y-1">
               <button
-                key={lesson.id}
-                onClick={() => onSelectLesson(lesson.originalIndex)}
+                onClick={() => toggleModule(moduleName)}
                 className={cn(
-                  "w-full text-left p-2 rounded-xl transition-all flex items-center gap-3 group",
-                  currentLessonIndex === lesson.originalIndex 
-                    ? "bg-blue-600/15 text-blue-100 border border-blue-500/20" 
-                    : "hover:bg-slate-800/40 text-slate-400"
+                  "w-full flex items-center justify-between p-2 rounded-xl transition-all group",
+                  isExpanded ? "bg-slate-800/40 text-slate-200" : "hover:bg-slate-800/30 text-slate-500"
                 )}
               >
-                <div className={cn(
-                  "w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-bold shrink-0",
-                  completedLessons.includes(lesson.id) 
-                    ? "bg-green-500/20 text-green-400" 
-                    : currentLessonIndex === lesson.originalIndex ? "bg-blue-600 text-white" : "bg-slate-800 text-slate-500"
-                )}>
-                  {completedLessons.includes(lesson.id) ? <CheckCircle2 size={12} /> : lesson.originalIndex + 1}
+                <div className="flex flex-col items-start min-w-0">
+                  <h3 className="text-[9px] font-bold uppercase tracking-[0.15em] truncate w-full text-left">
+                    {moduleName}
+                  </h3>
+                  <p className="text-[8px] font-medium text-slate-600 uppercase">
+                    {completedInModule} / {moduleLessons.length} Completos
+                  </p>
                 </div>
-                <div className="min-w-0">
-                  <p className="font-semibold truncate text-[11px] lg:text-xs tracking-tight">{lesson.title}</p>
-                </div>
+                {isExpanded ? <ChevronDown size={14} className="shrink-0" /> : <ChevronRight size={14} className="shrink-0" />}
               </button>
-            ))}
-          </div>
-        ))}
+              
+              {isExpanded && (
+                <div className="space-y-1 ml-3 border-l border-slate-800 pl-2 animate-in fade-in slide-in-from-top-1 duration-200">
+                  {moduleLessons.map((lesson) => (
+                    <button
+                      key={lesson.id}
+                      onClick={() => onSelectLesson(lesson.originalIndex)}
+                      className={cn(
+                        "w-full text-left p-2 rounded-xl transition-all flex items-center gap-3 group",
+                        currentLessonIndex === lesson.originalIndex 
+                          ? "bg-blue-600/15 text-blue-100 border border-blue-500/20" 
+                          : "hover:bg-slate-800/40 text-slate-400"
+                      )}
+                    >
+                      <div className={cn(
+                        "w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-bold shrink-0",
+                        completedLessons.includes(lesson.id) 
+                          ? "bg-green-500/20 text-green-400" 
+                          : currentLessonIndex === lesson.originalIndex ? "bg-blue-600 text-white" : "bg-slate-800 text-slate-500"
+                      )}>
+                        {completedLessons.includes(lesson.id) ? <CheckCircle2 size={12} /> : lesson.originalIndex + 1}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-semibold truncate text-[11px] lg:text-xs tracking-tight">{lesson.title}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </nav>
 
       <div className="p-3 border-t border-slate-800/50 min-w-[280px]">
